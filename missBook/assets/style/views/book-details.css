@@ -1,0 +1,81 @@
+.book-details {
+    background-color: var(--clr1-dark);
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto;
+    color: rgb(0, 0, 0);
+    max-width: 50vw;
+    align-items: center;
+    border-right: 1px solid rgba(0, 0, 0, 0.3);
+    border-left: 1px solid rgba(0, 0, 0, 0.3);
+    font-size: 1.2em;
+    padding: 20px;
+  
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.39);
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+img {
+    height: 200px;
+    width: 170px;
+    margin-bottom: 10px;
+    box-shadow: rgb(0 0 0 / 66%) 0px 1px 5px;
+}
+
+.book-details .title {
+    text-transform: capitalize;
+}
+
+/* REVIEWS */
+
+.book-details .book-reviews {
+    background-color: var(--clr1);
+    position: relative;
+    padding: 10px;
+    width: 400px;
+    box-shadow: rgb(0 0 0 / 66%) 0px 1px 5px;
+    margin: 20px;
+    
+}
+
+.book-reviews .review {
+    list-style: none;
+    padding: 0;
+}
+
+.book-reviews .review li {
+    background-color: whitesmoke;
+    border: 1px solid black;
+    font-size: .875em;
+    padding: 8px;
+    margin-bottom: 5px;
+}
+
+.review span {
+    color: rgb(158, 158, 158);
+}
+
+.review li .dlt-btn {
+    position: absolute;
+    left: 80%;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+@media (max-width: 720px) {
+    .book-details {
+        max-width: 90vw;
+    }
+}

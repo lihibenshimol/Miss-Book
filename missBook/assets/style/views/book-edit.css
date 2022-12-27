@@ -1,0 +1,24 @@
+.book-edit {
+    display: flex;
+    align-items: center;
+    background-color: var(--clr1-dark);
+    width: 330px;
+    height: 30vh;
+    border: .5px solid rgba(0, 0, 0, 0.558);
+    margin: 20px auto; 
+    padding: 10px;
+}
+
+.book-edit form {
+    display: flex;
+    flex-direction: column;
+}
+
+.book-edit form input {
+    width: 300px;
+    margin-bottom: 20px;
+}
+
+.book-edit .btns {
+    margin: 0 auto;
+}

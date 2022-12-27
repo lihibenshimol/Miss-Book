@@ -13,7 +13,10 @@ export const BooksService = {
   getDefaultFilter,
   getEmptyBook,
   getEmptyReview,
-  addReview
+  addReview,
+  removeReview,
+  getNextBookId,
+  getPrevBookId
 }
 
 function query(filterBy = getDefaultFilter()) {
@@ -31,19 +34,44 @@ function query(filterBy = getDefaultFilter()) {
 }
 
 function addReview(bookId, review) {
+  // _createReview(review)
   get(bookId).then(book => {
-    if (!book.reviews) {
-    book.reviews = [review]
+    if (!book.reviews) book.reviews = [review]
+    else book.reviews.unshift(review)
     save(book)
-    return
-    } 
-    if (book.reviews) book.reviews.push(review)
-    save(book)
+
   })
+}
+
+function removeReview(bookId, reviewId) {
+  let books = utilService.loadFromStorage(STORAGE_KEY)
+  let book = books.find((book) => book.id === bookId)
+  const newReviews = book.reviews.filter((review) => review.id !== reviewId)
+  book.reviews = newReviews
+  save(book)
+  return Promise.resolve()
 }
 
 function get(bookId) {
   return storageService.get(STORAGE_KEY, bookId)
+}
+
+function getNextBookId(bookId) {
+  return storageService.query(STORAGE_KEY)
+  .then(books => {
+    var idx = books.findIndex(book => book.id === bookId)
+    if (idx === books.length - 1) idx = - 1
+    return books[idx + 1].id
+  })
+}
+
+function getPrevBookId(bookId) {
+  return storageService.query(STORAGE_KEY)
+  .then(books => {
+    var idx = books.findIndex(book => book.id === bookId)
+    if (idx === 0) return books[books.length - 1].id
+    return books[idx - 1].id
+  })
 }
 
 function getDefaultFilter() {
@@ -87,10 +115,11 @@ function getEmptyBook(title = '', price = '') {
 }
 
 function getEmptyReview(reviewer = '', readAt = '', rate = '') {
-return {
+  return {
     reviewer,
     readAt,
-    rate
+    rate,
+    id: utilService.makeId()
   }
 }
 
@@ -145,7 +174,7 @@ function _createBooks() {
             "currencyCode": "EUR",
             "isOnSale": true
           },
-      
+
         },
         {
           "id": "1y0Oqts35DQ",
@@ -258,8 +287,8 @@ function _createBooks() {
           },
           review: {
             reviewer: 'lihi',
-            readAt:'22-10-22',
-  
+            readAt: '22-10-22',
+
           }
         },
         {

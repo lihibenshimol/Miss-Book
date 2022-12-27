@@ -1,9 +1,6 @@
 .add-review {
-    background-color: var(--clr1-dark);
-    width: 330px;
-    height: 30vh;
-    border: .5px solid rgba(0, 0, 0, 0.558);
-    margin: 20px auto;
+    display: flex;
+    border: .5px solid rgba(213, 213, 213, 0.343);
     padding: 10px;
 }
 
@@ -16,4 +13,7 @@
 .add-review form input, select {
     width: 200px;
     margin-bottom: 20px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid black;
 }

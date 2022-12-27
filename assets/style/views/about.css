@@ -3,16 +3,10 @@
     flex-direction: column;
     text-align: center;
     margin: 0 auto;
-    max-width: 50vw;
-    height: 50vh;
-    border: 1px solid black;
+    border-right: 1px solid rgba(0, 0, 0, 0.3);
+    border-left: 1px solid rgba(0, 0, 0, 0.3);
+    width: 80vw;
+    padding: 10px;
     border-top: none;
-    background-color: var(--clr1-dark);
     font-size: 1.2em;
-}
-
-.about .logo{
-    position: relative;
-    color: var(--clr1);
-    font-size: 2em;
 }

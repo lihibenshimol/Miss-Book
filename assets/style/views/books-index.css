@@ -4,3 +4,8 @@
     align-items: center;
     justify-content: center;
 }
+
+.books-index .add-links {
+    display: flex;
+    justify-content: space-between;
+}

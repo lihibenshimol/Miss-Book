@@ -1,4 +1,4 @@
-.books-list{
+.books-list {
     list-style: none;
     display: grid;
     width: 80vw;
@@ -11,34 +11,44 @@
 .books-list li {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     text-align: left;
+    transition: .4s;
+}
 
+.books-list li:hover {
+    background-color: rgba(199, 197, 188, 0.323);
 }
 
 ul.books-list {
-padding: 0;
+    padding: 0;
 }
 
 .book-list .title {
     text-transform: capitalize;
- }
+}
 
- .btns {
+.books-list .btns {
     display: flex;
-    gap: 2px;
- }
+    position: relative;
+    top: -10%;
+    justify-content: right;
+    gap: 3px;
+}
 
- .icon {
-    width: 20px;
-    height: 20px;
- }
-
- .select-btn {
+.select-btn {
     background-color: var(--clr6);
- }
+}
 
- @media (max-width: 720px) {
+.fa.select-btn::before {
+    content: "\f129";
+}
+
+.fa.remove-btn::before {
+    content: "\f2ed";
+}
+
+@media (max-width: 720px) {
 
     .books-list {
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -53,4 +63,4 @@ padding: 0;
         height: 150px;
         width: 120px;
     }
- }
+}

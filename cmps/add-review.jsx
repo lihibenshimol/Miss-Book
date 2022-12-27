@@ -1,28 +1,11 @@
-import { BooksService } from "../services/books.service.js"
-import { showSuccessMsg } from "../services/event-bus.service.js"
-
-const { useNavigate, useParams, Link } = ReactRouterDOM
 const { useState, useEffect } = React
 
-export function AddReview() {
-    const { bookId } = useParams()
-    const navigate = useNavigate()
-    const [bookToReview, setBookToReview] = useState(null)
+import { BooksService } from "../services/books.service.js"
+
+
+export function AddReview({ setModalIsOpen, onSaveReview }) {
+
     const [review, setReview] = useState(BooksService.getEmptyReview())
-
-    useEffect(() => {
-        if (!bookId) return
-        loadBook()
-    }, [])
-
-    function loadBook() {
-        BooksService.get(bookId)
-            .then((book) => setBookToReview(book))
-            .catch((err) => {
-                console.log('Had issues in book details', err)
-                navigate('/book')
-            })
-    }
 
     function handleChange({ target }) {
         let { value, type, name: field } = target
@@ -32,28 +15,21 @@ export function AddReview() {
         }))
     }
 
-    function onSaveReview(ev) {
+    function submitReview(ev) {
         ev.preventDefault()
-        BooksService.addReview(bookId ,review)
-        showSuccessMsg('Review Added!')
-        navigate(`/book/${bookId}`)
+        setModalIsOpen(false)
+        onSaveReview(review)
     }
 
-    // function onRemoveReview() {
-
-    // }
-
-
     return <section className="add-review">
-        {bookToReview && <h1>Add review to {`"${bookToReview.title}"`}</h1>}
 
-        {bookToReview && <form onSubmit={onSaveReview}>
+        <form onSubmit={submitReview}>
             <label htmlFor="reviewer">Fullname:</label>
             <input type="text"
                 name="reviewer"
                 id="reviewer"
                 placeholder="Enter fullname..."
-                value = {review.reviewer}
+                value={review.reviewer}
                 onChange={handleChange}
             />
 
@@ -62,7 +38,7 @@ export function AddReview() {
                 name="readAt"
                 id="readAt"
                 placeholder="Enter your rate..."
-                value = {review.readAt}
+                value={review.readAt}
                 onChange={handleChange}
             />
 
@@ -77,13 +53,8 @@ export function AddReview() {
 
             <div>
                 <button>Save</button>
-                <button> <Link to={`/book/${bookToReview.id}`}>Cancel</Link></button>
             </div>
-
-        </form>}
-
-
-        {!bookToReview && <div>Loading..</div>}
+        </form>
 
     </section>
 

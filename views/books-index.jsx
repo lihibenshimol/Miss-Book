@@ -11,11 +11,10 @@ import { BooksService } from "../services/books.service.js"
 export function BooksIndex() {
     const [filterBy, setFilterBy] = useState(BooksService.getDefaultFilter())
     const [books, setBooks] = useState()
-    // const [userMsg, setUserMsg] = useState('')
 
     useEffect(() => {
         loadBooks()
-    }, [filterBy])
+    }, [filterBy, books])
 
     function loadBooks() {
         BooksService.query(filterBy)
@@ -24,34 +23,39 @@ export function BooksIndex() {
             })
     }
 
-       function onRemoveBook(bookId) {
+
+    function onRemoveBook(bookId) {
         BooksService.remove(bookId)
             .then(() => {
                 const updatedBooks = books.filter(book => book.id !== bookId)
                 setBooks(updatedBooks)
-                // flashMsg('Book removed!')
                 showSuccessMsg('Book Removed!')
             })
             .catch((err) => {
                 console.log('Had issues removing', err)
                 showErrorMsg('Could not remove book, try again please!')
             })
-        }
-        
+    }
+
     function onSetFilter(filterBy) {
         setFilterBy(filterBy)
 
     }
 
     return <section className="books-index">
-    
-         <div>
+
+        <div>
             {!books && <h1>Loading Books...</h1>}
-            <BookFilter onSetFilter={onSetFilter}/>
-            <Link to="/book/edit">Add Book</Link>
+            <BookFilter onSetFilter={onSetFilter} />
+
+            <div className="add-links">
+                <Link to="/book/edit">Add Book</Link>
+                <Link to="/book/add">Add Book From Google</Link>
+            </div>
+
             {books && < BooksList books={books} onRemoveBook={onRemoveBook} />}
         </div>
-     
+
     </section>
 
 }

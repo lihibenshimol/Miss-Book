@@ -32,11 +32,12 @@ a {
   color: unset;
 }
 
-button {
+button,
+.btn {
   border-radius: 2px;
   box-shadow: rgb(0 0 0 / 29%) 1px 0px 1px;
   border: none;
-  font-size: .75em;
+  font-size: .9em;
   cursor: pointer;
   padding: 5px;
 }

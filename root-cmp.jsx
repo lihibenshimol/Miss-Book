@@ -8,7 +8,7 @@ import { BooksIndex } from './views/books-index.jsx';
 import { BookDetails } from "./views/book-details.jsx";
 import { BookEdit } from "./views/book-edit.jsx";
 import { UserMsg } from "./cmps/user-msg.jsx"
-import { AddReview } from "./cmps/add-review.jsx";
+import { AddGoogleBook } from "./views/add-google-book.jsx"
 
 export function App() {
 
@@ -26,7 +26,7 @@ export function App() {
                     <Route element={<BookEdit />} path="/book/edit"/>
                     <Route element={<BookEdit />} path="/book/edit/:bookId"/>
                     <Route element={<BookDetails />} path="/book/:bookId"/>
-                    <Route element={<AddReview />} path="/book/review/:bookId"/>
+                    <Route element={<AddGoogleBook />} path="/book/add" />
                 </Routes>       
             </main>
             <UserMsg />

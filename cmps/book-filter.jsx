@@ -23,17 +23,15 @@ export function BookFilter({ onSetFilter }) {
         onSetFilter(filterByToEdit)
     }
 
-    return <section className="book-filter full">
+    return <section className="book-filter main-layout">
         <form className="filter-form" onSubmit={onSubmitFilter}>
-            {/* <label htmlFor="title">Title:</label> */}
             <input type="text"
                 id="title"
                 name="title"
                 placeholder="Search by title"
                 onChange={handleChange} /> 
 
-            {/* <label htmlFor="maxPrice">Max Price:</label> */}
-            <input type="range" min="0" max="300"
+            <input type="range" min="10" max="300"
                 id="maxPrice"
                 name="maxPrice"
                 placeholder="by max price"

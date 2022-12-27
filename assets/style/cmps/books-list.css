@@ -1,0 +1,56 @@
+.books-list{
+    list-style: none;
+    display: grid;
+    width: 80vw;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    font-size: .8em;
+    margin: 0 auto;
+}
+
+.books-list li {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: left;
+
+}
+
+ul.books-list {
+padding: 0;
+}
+
+.book-list .title {
+    text-transform: capitalize;
+ }
+
+ .btns {
+    display: flex;
+    gap: 2px;
+ }
+
+ .icon {
+    width: 20px;
+    height: 20px;
+ }
+
+ .select-btn {
+    background-color: var(--clr6);
+ }
+
+ @media (max-width: 720px) {
+
+    .books-list {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+
+
+    h2 {
+        font-size: 1em;
+    }
+
+    img {
+        height: 150px;
+        width: 120px;
+    }
+ }
